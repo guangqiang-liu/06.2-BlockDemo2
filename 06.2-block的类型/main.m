@@ -8,10 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+void (^block)(void);
+
+void test() {
+    int a = 10;
+    
+    block = [^{
+        NSLog(@"%d", a); // 10
+    } copy];
+    
+    NSLog(@"%@", [block class]); // __NSMallocBlock__
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
-        NSLog(@"Hello, World!");
+        
+        test();
+        block();
     }
     return 0;
 }
